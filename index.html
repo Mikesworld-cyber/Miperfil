@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Miguel Cauich - Futuro Ingeniero en Sistemas Computacionales</title>
+    <style>
+        @keyframes tonext {
+  75% {
+    left: 0;
+  }
+  95% {
+    left: 100%;
+  }
+  98% {
+    left: 100%;
+  }
+  99% {
+    left: 0;
+  }
+}
+
+@keyframes tostart {
+  75% {
+    left: 0;
+  }
+  95% {
+    left: -300%;
+  }
+  98% {
+    left: -300%;
+  }
+  99% {
+    left: 0;
+  }
+}
+
+  .zoom-img {
+    transition: transform 0.3s ease;
+    cursor: pointer;
+  }
+
+  .zoom-img:hover {
+    transform: scale(1.1); /* Agranda un 10% */
+  }
+
+@keyframes snap {
+  96% {
+    scroll-snap-align: center;
+  }
+  97% {
+    scroll-snap-align: none;
+  }
+  99% {
+    scroll-snap-align: none;
+  }
+  100% {
+    scroll-snap-align: center;
+  }
+}
+
+
+
+
+
+*::-webkit-scrollbar {
+  width: 0;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: transparent;
+  border: none;
+}
+
+* {
+  -ms-overflow-style: none;
+}
+
+ol, li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.carousel {
+  position: relative;
+  padding-top: 50%;
+  filter: drop-shadow(0 0 10px #0003);
+  perspective: 100px;
+  width: 90%;
+  height: 30%;
+   margin: 0 auto;
+}
+img{
+    margin: 0 auto;
+}
+
+.carousel__viewport {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  overflow-x: scroll;
+  counter-reset: item;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+}
+
+.carousel__slide {
+  position: relative;
+  flex: 0 0 100%;
+  width: 100%;
+  background-color: #f99;
+  counter-increment: item;
+}
+
+.carousel__slide:nth-child(even) {
+  background-color: rgb(252, 252, 254);
+}
+
+.carousel__slide:before {
+  content: counter(item);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%,-40%,70px);
+  color: #fff;
+  font-size: 2em;
+}
+
+.carousel__snapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  scroll-snap-align: center;
+}
+
+@media (hover: hover) {
+  .carousel__snapper {
+    animation-name: tonext, snap;
+    animation-timing-function: ease;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+  }
+
+  .carousel__slide:last-child .carousel__snapper {
+    animation-name: tostart, snap;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .carousel__snapper {
+    animation-name: none;
+  }
+}
+
+.carousel:hover .carousel__snapper,
+.carousel:focus-within .carousel__snapper {
+  animation-name: none;
+}
+
+.carousel__navigation {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+}
+
+.carousel__navigation-list,
+.carousel__navigation-item {
+  display: inline-block;
+}
+
+.carousel__navigation-button {
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: #333;
+  background-clip: content-box;
+  border: 0.25rem solid transparent;
+  border-radius: 50%;
+  font-size: 0;
+  transition: transform 0.1s;
+}
+
+.carousel::before,
+.carousel::after,
+.carousel__prev,
+.carousel__next {
+  position: absolute;
+  top: 0;
+  margin-top: 25.5%;
+  width: 4rem;
+  height: 4rem;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  font-size: 0;
+  outline: 0;
+}
+
+.carousel::before,
+.carousel__prev {
+  left: 0rem;
+}
+
+.carousel::after,
+.carousel__next {
+  right: 1rem;
+}
+
+.carousel::before,
+.carousel::after {
+  content: '';
+  z-index: 1;
+  background-color: #333;
+  background-size: 1.5rem 1.5rem;
+  background-repeat: no-repeat;
+  background-position: center center;
+  color: #fff;
+  font-size: 2.5rem;
+  line-height: 4rem;
+  text-align: center;
+  pointer-events: none;
+}
+
+.carousel::before {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='0,50 80,100 80,0' fill='%23fff'/%3E%3C/svg%3E");
+}
+
+.carousel::after {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='100,50 20,100 20,0' fill='%23fff'/%3E%3C/svg%3E");
+}
+    </style>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .name {
+            font-size: 3em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .title {
+            font-size: 1.4em;
+            opacity: 0.9;
+            font-weight: 300;
+            margin-bottom: 20px;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95em;
+        }
+        
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            padding: 40px;
+        }
+        
+        .section {
+            margin-bottom: 35px;
+        }
+        
+        .section-title {
+            font-size: 1.4em;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #3498db;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: #e74c3c;
+        }
+        
+        .profile-text {
+            font-size: 1.05em;
+            line-height: 1.7;
+            color: #555;
+            text-align: justify;
+        }
+        
+        .education-item, .experience-item {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #3498db;
+            transition: transform 0.3s ease;
+        }
+        
+        .education-item:hover, .experience-item:hover {
+            transform: translateX(5px);
+        }
+        
+        .item-title {
+            font-weight: 700;
+            font-size: 1.1em;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        
+        .item-subtitle {
+            color: #7f8c8d;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .item-date {
+            color: #e74c3c;
+            font-weight: 600;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+        
+        .item-description {
+            color: #555;
+            line-height: 1.6;
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .skill-category {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-top: 4px solid #3498db;
+        }
+        
+        .skill-category h4 {
+            color: #2c3e50;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+        
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .skill-tag {
+            background: #3498db;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 500;
+        }
+        
+        .languages {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .language {
+            background: #e8f4fd;
+            padding: 15px 20px;
+            border-radius: 10px;
+            text-align: center;
+            flex: 1;
+            min-width: 120px;
+            border: 2px solid #3498db;
+        }
+        
+        .language-name {
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        
+        .language-level {
+            color: #3498db;
+            font-size: 0.9em;
+            font-weight: 600;
+        }
+        
+        .portfolio-grid {
+            display: grid;
+            gap: 20px;
+        }
+        
+        .portfolio-item {
+            background: #f8f9fa;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+        
+        .portfolio-item:hover {
+            border-color: #3498db;
+            box-shadow: 0 8px 25px rgba(52, 152, 219, 0.15);
+            transform: translateY(-2px);
+        }
+        
+        .portfolio-preview {
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            position: relative;
+        }
+        
+        .project-icon {
+            font-size: 2.5em;
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .portfolio-preview h4 {
+            color: #2c3e50;
+            font-weight: 700;
+            margin: 0;
+            flex: 1;
+        }
+        
+        .project-tech {
+            color: #7f8c8d;
+            font-size: 0.9em;
+            margin: 5px 0 0 0;
+        }
+        
+        .expand-indicator {
+            background: #3498db;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2em;
+            transition: all 0.3s ease;
+        }
+        
+        .portfolio-item.active .expand-indicator {
+            transform: rotate(45deg);
+            background: #e74c3c;
+        }
+        
+        .portfolio-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            background: white;
+        }
+        
+        .portfolio-details.active {
+            max-height: 800px;
+            border-top: 2px solid #ecf0f1;
+        }
+        
+        .detail-content {
+            padding: 25px;
+            animation: fadeInUp 0.4s ease;
+        }
+        
+        .detail-content h5 {
+            color: #2c3e50;
+            font-weight: 700;
+            margin: 20px 0 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.1em;
+        }
+        
+        .detail-content h5:first-child {
+            margin-top: 0;
+        }
+        
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 10px 0;
+        }
+        
+        .tech-tag {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: 600;
+            box-shadow: 0 2px 5px rgba(52, 152, 219, 0.3);
+        }
+        
+        .detail-content ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        
+        .detail-content li {
+            margin: 8px 0;
+            line-height: 1.5;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+        
+        .portfolio-item:hover .project-icon {
+            animation: pulse 2s infinite;
+        }
+            .content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                padding: 20px;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+            
+            .name {
+                font-size: 2.2em;
+            }
+            
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <h1 class="name">MIGUEL CAUICH</h1>
+                <p class="title">INGENIERO EN SISTEMAS COMPUTACIONALES</p>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        📧 miguelangelcauichpech73@gmail.com
+                    </div>
+                    <div class="contact-item">
+                        📱 +52 997-142-7367
+                    </div>
+                
+                </div>
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="left-column">
+                <div class="section">
+                    <h2 class="section-title">MI PERFIL</h2>
+                    <p class="profile-text">
+                        Soy Miguel, pero muchos me conocen como Mike, estudiante apasionado por la tecnología, especialmente en la programación y su aplicación en el bienestar humano y ambiental. <strong>He trabajado en proyectos de visión por computadora, aplicaciones móviles con Android Studio, software de escritorio utilizando
+ WPF en C# y Java con JavaFX, así como en el desarrollo web con HTML, CSS, JavaScript y PHP</strong>,  con sólida experiencia en <strong>bases de datos MySQL</strong> y metodologías ágiles. Disfruto aprender
+ constantemente, resolver problemas reales y aportar valor con cada proyecto. Me interesa seguir creciendo en equipos
+ multidisciplinarios donde la inteligencia artificial, la programación y la tecnología tengan un impacto positivo en la sociedad. 
+                        <br><br>
+                        <strong>Soy una persona dedicada y metódica, con una filosofía de trabajo que me acompaña en todo lo que hago</strong>: <em>"Un paso a la vez, vamos logrando los esfuerzos"</em>.
+                        <br><br>
+                        Me gusta trabajar con calma, pero con constancia. Creo que el progreso real viene de avanzar con enfoque, incluso si es de forma gradual. Esa manera de ver el trabajo me ha permitido liderar y desarrollar proyectos que realmente aportan valor. <strong>Mi objetivo es seguir creciendo profesionalmente, aprendiendo de cada reto y aportando soluciones que marquen una diferencia</strong>.
+                    </p>
+                </div>
+                
+                <div class="section">
+                    <h2 class="section-title">EDUCACIÓN</h2>
+                    <div class="education-item">
+                        <div class="item-title">Ingeniería en Sistemas Computacionales</div>
+                        <div class="item-subtitle">Instituto Tecnológico Superior del Sur del Estado de Yucatán</div>
+                        <div class="item-date">2021 - 2026</div>
+                        <div class="item-description">
+                            Especialización en desarrollo de software, bases de datos, arquitectura de sistemas y metodologías de desarrollo ágil.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h2 class="section-title">COMPETENCIAS TÉCNICAS</h2>
+                    <div class="skills-grid">
+                        <div class="skill-category">
+                            <h4>Desarrollo Mobile</h4>
+                            <div class="skill-list">
+                                <span class="skill-tag">Android Studio</span>
+                                <span class="skill-tag">Java</span>
+                                <span class="skill-tag">Kotlin</span>
+                                <span class="skill-tag">Jetpack Compose</span>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-category">
+                            <h4>Desarrollo Web</h4>
+                            <div class="skill-list">
+                                <span class="skill-tag">PHP</span>
+                                <span class="skill-tag">HTML/CSS</span>
+                                <span class="skill-tag">JavaScript</span>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-category">
+                            <h4>Backend & BD</h4>
+                            <div class="skill-list">
+                                <span class="skill-tag">Python</span>
+                                <span class="skill-tag">C#</span>
+                                <span class="skill-tag">MySQL</span>
+                                <span class="skill-tag">Firebase</span>
+                                <span class="skill-tag">APIs REST</span>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-category">
+                            <h4>Herramientas</h4>
+                            <div class="skill-list">
+                                <span class="skill-tag">Git</span>
+                                <span class="skill-tag">Composer</span>
+                                <span class="skill-tag">Visual Studio</span>
+                                <span class="skill-tag">Metodologías Ágiles</span>
+                                <span class="skill-tag">Visual Code</span>
+                                <span class="skill-tag">Github</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h2 class="section-title">IDIOMAS</h2>
+                    <div class="languages">
+                        <div class="language">
+                            <div class="language-name">Español</div>
+                            <div class="language-level">Nativo</div>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Inglés</div>
+                            <div class="language-level">Intermedio B1</div>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Maya</div>
+                            <div class="language-level">Compresion básica</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="right-column">
+                <div class="section">
+                    <h2 class="section-title">EXPERIENCIA PROFESIONAL</h2>
+                    
+                    <div class="experience-item">
+                        <div class="item-title">Desarrollador de Sistemas de Gestión</div>
+                        <div class="item-subtitle">Sistema de Gestión de Créditos Escolares - Oxkutzcab, Yucatán</div>
+                        <div class="item-date">Abril 2025</div>
+                        <div class="item-description">
+                            • Desarrollé una <strong>aplicación completa de escritorio con WPF C#</strong> para la gestión y administración de créditos escolares<br>
+                            • Implementé <strong>base de datos robusta</strong> para el manejo eficiente de información estudiantil<br>
+                            • Logré <strong>automatización del 90%</strong> de procesos administrativos manuales
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="experience-item">
+                        <div class="item-title">Colaborador de Desarrollo - Hackatec Regional</div>
+                        <div class="item-subtitle">Innova TecNM 2024 - Villahermosa, Tabasco</div>
+                        <div class="item-date">Septiembre 2024</div>
+                        <div class="item-description">
+                            • Participé como parte de un equipo multidisciplinario en <strong> de 48 horas</strong><br>
+                            • Desarrollé <strong>aplicación móvil con API de geolocalización</strong> para identificar y conectar refugios durante un escenario de desastre natural<br>
+                            • Implementé <strong>arquitectura escalable</strong> utilizando jornada intensiva de trabajo colaborativo
+                        </div>
+               
+                    </div>
+                    
+                    <div class="experience-item">
+                        <div class="item-title">Innovación en salud digital mediante Inteligencia Artificial</div>
+                        <div class="item-subtitle">Primer Foro de la Salud del TecNM - Ciudad de México, CDMX</div>
+                        <div class="item-date">Abril 2025</div>
+                        <div class="item-description">
+                            • Participé en un <strong>evento nacional del TecNM</strong> enfocado en soluciones tecnológicas para el sector salud<br>
+                            • Propuse <strong>una aplicación centrada en el diagnóstico temprano de enfermedades visuales mediante inteligencia artificial</strong><br>
+                            • El proyecto fue seleccionado como uno de los <strong>48 mejores a nivel nacional</strong><br>
+                            • <strong> siendo el único representante del estado de Yucatán</strong>
+                        </div>
+                        <img src="imagenes/Forosalud/Forosalud.jpg" alt="Forosalud">
+                    </div>
+                    
+                    <div class="experience-item">
+                        <div class="item-title">Desarrollador de Aplicaciones Interactivas</div>
+                        <div class="item-subtitle">Innova TecNM 2025 - Oxkutzcab, Yucatán</div>
+                        <div class="item-date">Mayo 2025</div>
+                        <div class="item-description">
+                            • Lideré el desarrollo de <strong>EyeAlert</strong> app con IA para el análisis de imágenes del ojo, así como tecnologías que facilitaran la interacción entre pacientes y especialistas.<br>
+                            • Colaboré en <strong> DataTree </strong> proyecto orientado al análisis de cultivos y suelos para una agricultura más sostenible, integrando sensores IoT y procesamiento de datos<br>
+                            • <strong>Ambos proyectos fueron seleccionados para la etapa regional del evento de innovación del TecNM 2025</strong> 
+                        </div>
+                        <section class="carousel" aria-label="Gallery">
+  <ol class="carousel__viewport">
+    <li id="carousel__slide1"
+        tabindex="0"
+        class="carousel__slide">
+      <div class="carousel__snapper">
+       
+        <a href="#carousel__slide2" 
+           class="carousel__prev">Go to last slide</a>
+        <a href="#carousel__slide2"
+           class="carousel__next">Go to next slide</a>
+            <img src="imagenes/Innovatec2025/Logo DataTree.png" alt="Imagen 1" style="width:100%; height:100%; object-fit:cover;">
+      </div>
+    </li>
+    <li id="carousel__slide2"
+        tabindex="0"
+        class="carousel__slide">
+      <div class="carousel__snapper">
+         <img src="imagenes/Innovatec2025/logopng.png" alt="Imagen 1" style="width:50%; height:100%;  display: block; margin: auto;" >
+      </div>
+      <a href="#carousel__slide1"
+         class="carousel__prev">Go to previous slide</a>
+      <a href="#carousel__slide1"
+         class="carousel__next">Go to next slide</a>
+    </li>
+    
+  </ol>
+  <aside class="carousel__navigation">
+    <ol class="carousel__navigation-list">
+      <li class="carousel__navigation-item">
+        <a href="#carousel__slide1"
+           class="carousel__navigation-button">Go to slide 1</a>
+      </li>
+      <li class="carousel__navigation-item">
+        <a href="#carousel__slide2"
+           class="carousel__navigation-button">Go to slide 2</a>
+      </li>
+      
+    </ol>
+  </aside>
+</section>
+                    </div>
+
+                </div>
+                
+        
+            </div>
+        </div>
+    </div>
+    
+
+
+
+
+   
+</body>
+</html>
